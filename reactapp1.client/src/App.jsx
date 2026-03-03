@@ -1,30 +1,32 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 import { useEffect, useState } from 'react';
 import './App.css';
+import { Navbar } from './components/Navbar.jsx';
+import { useUserTransactions } from './hooks/useUserTransactions.jsx'
 
 function App() {
-    const [transactions, setTransactions] = useState([]);
+    const { transactions, loading } = useUserTransactions();
+    //async function fetchTransactions() { 
+    //    try {
+    //        const res = await fetch('api/UserTransaction');
+    //        if (res.ok) {
+    //            const data = await res.json();
+    //            setTransactions(data);
+    //        }
+    //    } catch (error) {
+    //        console.error('Error fetching transactions:', error);
+    //    }
+    //}
 
-    async function fetchTransactions() {
+    //const [transactions, setTransactions] = useState([]);
+    //useEffect(() => {
+    //    fetchTransactions();
+    //}, []);
 
-        try {
-            const res = await fetch('api/UserTransaction');
-            if (res.ok) {
-                const data = await res.json();
-                setTransactions(data);
-            }
-        } catch (error) {
-            console.error('Error fetching transactions:', error);
-        }
-    }
-
-    
-    useEffect(() => {
-        fetchTransactions();
-    }, []);
 
     return (
         <div className="App">
+            <Navbar/>
             {transactions.length === 0 ? (
                 <p>Loading Transations</p>
             ) : (
