@@ -6,7 +6,7 @@ import { useUserTransactions } from './hooks/useUserTransactions.jsx'
 
 function App() {
     const { transactions, loading } = useUserTransactions();
-    //async function fetchTransactions() { 
+    //async function fetchTransactions() {
     //    try {
     //        const res = await fetch('api/UserTransaction');
     //        if (res.ok) {
@@ -22,6 +22,9 @@ function App() {
     //useEffect(() => {
     //    fetchTransactions();
     //}, []);
+    if (loading) {
+        return <p>Loading...</p>
+    }
 
 
     return (
